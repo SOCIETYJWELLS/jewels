@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us & Location | Society Jewellers</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       HAUTE JOAILLERIE MODERN THEME (MATCHING HOME & COLLECTIONS)
+       ========================================================================== */
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: rgba(22, 22, 26, 0.75);
+      --primary-gold: #d4af37;
+      --bright-gold: #f3e5ab;
+      --dark-gold: #aa7c11;
+      --text-main: #f0f0f3;
+      --text-muted: #a0a0ab;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Montserrat', sans-serif;
+      --glass-border: rgba(212, 175, 55, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* 1. Announcement Bar */
+    .announcement-bar {
+      background: linear-gradient(90deg, #8a6d20, var(--primary-gold), #8a6d20);
+      color: #000;
+      text-align: center;
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1001;
+    }
+
+    /* 2. Floating Navbar */
+    .navbar {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1300px;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 0.75rem 2rem;
+      z-index: 1000;
+      transition: all 0.4s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--primary-gold);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* Header Search Bar */
+    .header-search-container {
+      position: relative;
+      flex-grow: 1;
+      max-width: 320px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-search-container input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 0.55rem 2.2rem 0.55rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .header-search-container input:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .header-search-icon {
+      position: absolute;
+      right: 12px;
+      font-size: 0.85rem;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-gold);
+    }
+
+    /* Mobile Hamburger */
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 1002;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--primary-gold);
+      transition: all 0.3s ease;
+    }
+
+    /* 3. Hero / Page Header */
+    .page-hero {
+      position: relative;
+      padding: 10rem 2rem 5rem;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, rgba(10, 10, 12, 1) 75%);
+      text-align: center;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--primary-gold);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--bright-gold) 70%, var(--primary-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .title-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--primary-gold);
+      margin: 1.2rem auto 0;
+    }
+
+    /* 4. Story & Legacy Section */
+    .story-section {
+      max-width: 1300px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .story-text h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--bright-gold);
+      margin-bottom: 1.2rem;
+      letter-spacing: 1.5px;
+    }
+
+    .story-text p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .story-image-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      height: 420px;
+      background-image: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
+
+    .story-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      padding: 1.2rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .story-badge h4 {
+      font-family: var(--font-heading);
+      color: var(--primary-gold);
+      letter-spacing: 2px;
+      font-size: 0.95rem;
+    }
+
+    .story-badge p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* 5. Values Grid */
+    .values-section {
+      max-width: 1300px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .value-card:hover {
+      border-color: var(--primary-gold);
+      transform: translateY(-5px);
+    }
+
+    .value-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-card h3 {
+      font-family: var(--font-heading);
+      color: var(--bright-gold);
+      margin-bottom: 0.6rem;
+      font-size: 1.15rem;
+    }
+
+    .value-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* 6. Contact & Map Location Section */
+    .location-section {
+      max-width: 1300px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .location-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 3rem;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .contact-info-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-info-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--bright-gold);
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .info-icon {
+      font-size: 1.5rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--glass-border);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-details h5 {
+      font-family: var(--font-heading);
+      color: var(--primary-gold);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-details p, .info-details a {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      text-decoration: none;
+      line-height: 1.6;
+      font-weight: 300;
+      transition: color 0.3s ease;
+    }
+
+    .info-details a:hover {
+      color: var(--bright-gold);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn-action {
+      flex: 1;
+      min-width: 140px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+      color: #000;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-action:hover {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Google Map Container */
+    .map-container {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(80%) invert(90%) contrast(120%);
+    }
+
+    /* 7. Footer */
+    .footer {
+      background: #060608;
+      border-top: 1px solid var(--glass-border);
+      padding: 5rem 2rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-col h3 {
+      font-family: var(--font-heading);
+      color: var(--primary-gold);
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      color: #fff;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .footer-col p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary-gold);
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 75%; height: 100vh;
+        background: rgba(10,10,12,0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        transition: right 0.4s ease;
+        border-left: 1px solid var(--glass-border);
+      }
+
+      .nav-links.active { right: 0; }
+      .hamburger-btn { display: flex; }
+      .header-search-container { max-width: 180px; }
+      .location-wrapper { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    ✨ Visit Our Flagship Showroom | Private VIP Lounge Appointments Available ✨
+  </div>
+
+  <!-- Floating Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-text">SOCIETY JEWELLERS</a>
+
+      <!-- Header Search Input -->
+      <div class="header-search-container">
+        <input type="text" id="headerSearchInput" placeholder="Search gold, diamonds, location..." onclick="window.location.href='index.html#search-section'">
+        <span class="header-search-icon">🔍</span>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="collections.html">The Vault</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="about.html" class="active">About Us</a>
+        <a href="#location">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header / Hero -->
+  <section class="page-hero">
+    <span class="hero-tag">A Heritage Of Distinction</span>
+    <h1>The House of Society</h1>
+    <p>For decades, Society Jewellers has been synonymous with uncompromised artistry, royal heritage, and ethically sourced fine gold and diamond treasures.</p>
+    <div class="title-divider"></div>
+  </section>
+
+  <!-- Brand Story & Heritage -->
+  <section class="story-section">
+    <div class="story-text">
+      <h2>Crafting Timeless Legacies Since 1985</h2>
+      <p>Founded on the principles of royal Indian artistry and flawless gem selection, Society Jewellers began as a boutique studio catering to royalty and discerning collectors.</p>
+      <p>Every creation in our Vault passes through the hands of master artisans whose lineages span generations. From 22K BIS Hallmarked gold to certified EF-VVS solitaires, our jewelry is created to be passed down through time as precious family heirlooms.</p>
+      <p>We invite you to experience our flagship showroom lounge, where privacy, heritage, and personalized bespoke design consultations await you.</p>
+    </div>
+
+    <div class="story-image-card">
+      <div class="story-badge">
+        <h4>100% BIS Hallmarked & Certified</h4>
+        <p>Uncompromising Purity & Transparency Guarantees</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Pillars / Values -->
+  <section class="values-section">
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">👑</div>
+        <h3>Haute Artistry</h3>
+        <p>Hand-carved Nakshi, Meenakari, and Polki designs brought to life by master goldsmiths.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">💎</div>
+        <h3>Ethical Diamonds</h3>
+        <p>Conflict-free, certified diamonds cut to precise mathematical brilliance.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Lifetime Relationship</h3>
+        <p>Complimentary lifetime maintenance, annual polishing, and buyback assurance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Contact Section -->
+  <section id="location" class="location-section">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <span class="hero-tag">Visit Our Showroom</span>
+      <h2 style="font-family: var(--font-heading); font-size: 2.2rem; color: #fff;">Location & Contact</h2>
+      <div class="title-divider"></div>
+    </div>
+
+    <div class="location-wrapper">
+      <!-- Left Box: Contact Details -->
+      <div class="contact-info-box">
+        <div>
+          <h3>Flagship Gallery</h3>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-details">
+              <h5>Store Address</h5>
+              <p>Society Jewellers Flagship Store<br>
+                 Jewellery Market, Central Avenue,<br>
+                 Mumbai, Maharashtra - 400001, India</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-details">
+              <h5>Phone & WhatsApp</h5>
+              <p><a href="tel:+919876543210">+91 98765 43210</a> / <a href="tel:+912223456789">+91 22 2345 6789</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">✉️</div>
+            <div class="info-details">
+              <h5>Email Address</h5>
+              <p><a href="mailto:contact@societyjewellers.com">contact@societyjewellers.com</a></p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">🕒</div>
+            <div class="info-details">
+              <h5>Showroom Hours</h5>
+              <p>Monday – Saturday: 10:30 AM – 8:30 PM<br>
+                 Sunday: By Prior VIP Appointment Only</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <a href="tel:+919876543210" class="btn-action">Call Store</a>
+          <a href="https://maps.google.com/?q=Mumbai+Maharashtra" target="_blank" class="btn-action">Open Directions</a>
+        </div>
+      </div>
+
+      <!-- Right Box: Interactive Google Map -->
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823307!2d72.74109778235212!3d19.08219783958742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Society Jewellers Google Map Location">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>SOCIETY JEWELLERS</h3>
+        <p>Your trusted house of fine jewelry, pure gold, sterling silver, and ethically sourced diamonds.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collections.html">The Vault</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#location">Location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>Email: contact@societyjewellers.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Store Hours: Mon - Sat: 10:30 AM - 8:30 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Society Jewellers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script for Mobile Drawer -->
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburgerBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

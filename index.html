@@ -1,0 +1,1211 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Society Jewellers | Timeless Elegance & Fine Craftsmanship</title>
+  
+  <!-- Swiper.js CSS (Carousel) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       HAUTE JOAILLERIE MODERN THEME
+       ========================================================================== */
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: rgba(22, 22, 26, 0.75);
+      --primary-gold: #d4af37;
+      --bright-gold: #f3e5ab;
+      --dark-gold: #aa7c11;
+      --text-main: #f0f0f3;
+      --text-muted: #a0a0ab;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Montserrat', sans-serif;
+      --glass-border: rgba(212, 175, 55, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* 1. Announcement Bar */
+    .announcement-bar {
+      background: linear-gradient(90deg, #8a6d20, var(--primary-gold), #8a6d20);
+      color: #000;
+      text-align: center;
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1001;
+    }
+
+    /* 2. Floating Navbar */
+    .navbar {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1300px;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 0.75rem 2rem;
+      z-index: 1000;
+      transition: all 0.4s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--primary-gold);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* Header Search Bar */
+    .header-search-container {
+      position: relative;
+      flex-grow: 1;
+      max-width: 320px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-search-container input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 0.55rem 2.2rem 0.55rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .header-search-container input:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .header-search-icon {
+      position: absolute;
+      right: 12px;
+      font-size: 0.85rem;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-gold);
+    }
+
+    /* Mobile Hamburger */
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 1002;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--primary-gold);
+      transition: all 0.3s ease;
+    }
+
+    /* 3. Hero Section */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, rgba(10, 10, 12, 1) 70%);
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      z-index: 2;
+    }
+
+    .hero-content .subtitle {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--primary-gold);
+      border: 1px solid var(--primary-gold);
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      margin-bottom: 1.5rem;
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      letter-spacing: 3px;
+      margin-bottom: 1.2rem;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff 30%, var(--bright-gold) 70%, var(--primary-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+      color: #000;
+      padding: 0.9rem 2.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 0.9rem 2.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary-gold);
+      color: var(--primary-gold);
+    }
+
+    /* 4. Features Section */
+    .features {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 2.2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .feature-item:hover {
+      border-color: var(--primary-gold);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h3 {
+      font-family: var(--font-heading);
+      color: var(--bright-gold);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .feature-item p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 300;
+    }
+
+    /* Shared Section Headers */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 0 1rem;
+    }
+
+    .section-tag {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--primary-gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .title-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--primary-gold);
+      margin: 1rem auto 0;
+    }
+
+    /* 5. Shop By Category Grid */
+    .categories-section {
+      max-width: 1300px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .cat-card {
+      position: relative;
+      height: 260px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background-size: cover;
+      background-position: center;
+      transition: all 0.5s ease;
+    }
+
+    .cat-card:hover {
+      transform: scale(1.02);
+      border-color: var(--primary-gold);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+    }
+
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,12,0.95) 10%, rgba(10,10,12,0.2) 100%);
+      transition: opacity 0.3s ease;
+    }
+
+    .cat-card h3 {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-heading);
+      color: var(--bright-gold);
+      font-size: 1.35rem;
+      letter-spacing: 1.5px;
+      transition: transform 0.3s ease;
+    }
+
+    .cat-card:hover h3 {
+      transform: translateX(8px);
+    }
+
+    .cat-gold { background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop'); }
+    .cat-diamond { background-image: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop'); }
+    .cat-kundan { background-image: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop'); }
+    .cat-bridal { background-image: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop'); }
+    .cat-daily { background-image: url('https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop'); }
+    .cat-silver { background-image: url('https://images.unsplash.com/photo-1611591475196-8575a069a3cf?q=80&w=800&auto=format&fit=crop'); }
+
+    /* 6. Carousel Section */
+    .swipe-section {
+      max-width: 1300px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .swipe-hint {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      font-weight: 300;
+    }
+
+    .collectionSwiper {
+      padding: 2rem 0 4rem;
+    }
+
+    .swiper-slide.card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swiper-slide.card:hover {
+      border-color: var(--primary-gold);
+      transform: translateY(-8px);
+    }
+
+    .card-img-placeholder {
+      height: 250px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px; left: 15px;
+      background: rgba(10,10,12,0.85);
+      border: 1px solid var(--glass-border);
+      color: var(--bright-gold);
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    .card-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .category-tag {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-gold);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .card-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .card-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .btn-sm {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 0.7rem 0;
+      border: 1px solid var(--primary-gold);
+      color: var(--primary-gold);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .btn-sm:hover {
+      background: var(--primary-gold);
+      color: #000;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Carousel Placeholder Images */
+    .gold-necklace { background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop'); }
+    .diamond-ring { background-image: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop'); }
+    .bridal-choker { background-image: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop'); }
+    .gold-bangles { background-image: url('https://images.unsplash.com/photo-1611591475196-8575a069a3cf?q=80&w=800&auto=format&fit=crop'); }
+    .diamond-earrings { background-image: url('https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop'); }
+
+    /* Swiper Controls Customization */
+    .swiper-button-next, .swiper-button-prev { color: var(--primary-gold); }
+    .swiper-pagination-bullet-active { background: var(--primary-gold); }
+
+    /* 7. Dedicated Real-Time Search Engine Section */
+    .search-page-hero {
+      background: rgba(18, 18, 22, 0.6);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .search-page-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .quick-tags {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      align-items: center;
+    }
+
+    .quick-tags span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+    }
+
+    .tag-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tag-btn.active, .tag-btn:hover {
+      background: var(--primary-gold);
+      color: #000;
+      border-color: var(--primary-gold);
+      font-weight: 600;
+    }
+
+    /* Results Grid Area */
+    .search-results-section {
+      max-width: 1300px;
+      margin: 3rem auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .results-header h3 {
+      font-family: var(--font-heading);
+      color: var(--bright-gold);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .dedicated-results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    /* 8. About Banner */
+    .about-banner {
+      background: linear-gradient(rgba(10,10,12,0.85), rgba(10,10,12,0.85)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 6rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .about-content {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .about-content h2 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--bright-gold);
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    .about-content p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    /* 9. Testimonials */
+    .testimonials-section {
+      max-width: 1300px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testi-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 2.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .testi-card:hover {
+      border-color: var(--primary-gold);
+    }
+
+    .testi-card .stars {
+      color: var(--primary-gold);
+      margin-bottom: 1rem;
+    }
+
+    .testi-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .testi-card h5 {
+      font-family: var(--font-heading);
+      color: var(--bright-gold);
+      letter-spacing: 1px;
+    }
+
+    /* 10. Footer */
+    .footer {
+      background: #060608;
+      border-top: 1px solid var(--glass-border);
+      padding: 5rem 2rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-col h3 {
+      font-family: var(--font-heading);
+      color: var(--primary-gold);
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      color: #fff;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .footer-col p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul li a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary-gold);
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 75%; height: 100vh;
+        background: rgba(10,10,12,0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        transition: right 0.4s ease;
+        border-left: 1px solid var(--glass-border);
+      }
+
+      .nav-links.active { right: 0; }
+
+      .hamburger-btn { display: flex; }
+      
+      .header-search-container {
+        max-width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    ✨ Exclusive Festival Collection | Complimentary Insured Worldwide Shipping ✨
+  </div>
+
+  <!-- Floating Navigation Bar with Top Search Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-text">SOCIETY JEWELLERS</a>
+
+      <!-- Header Top Search Input -->
+      <div class="header-search-container">
+        <input type="text" id="headerSearchInput" placeholder="Search gold, silver, diamonds, rings...">
+        <span class="header-search-icon">🔍</span>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="collections.html">The Vault</a>
+        <a href="#categories">Categories</a>
+        <a href="about.html">About Us</a>
+        <a href="about.html#location">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <span class="subtitle">Crafted for Royal Luxury</span>
+      <h1>Elegance Beyond Time</h1>
+      <p>Discover our signature handcrafted gold, diamond, silver, and precious gemstone high jewelry created for every unforgettable chapter.</p>
+      <div class="hero-actions">
+        <a href="collections.html" class="btn-primary">Explore Full Vault</a>
+        <a href="#swipe-collections" class="btn-secondary">View Highlights</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Banner -->
+  <section class="features">
+    <div class="feature-item">
+      <div class="feature-icon">👑</div>
+      <h3>Certified Purity</h3>
+      <p>100% BIS Hallmarked & Diamond Certified</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💎</div>
+      <h3>Bespoke Craftsmanship</h3>
+      <p>Custom tailored handcrafted heirlooms</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🛡️</div>
+      <h3>Lifetime Promise</h3>
+      <p>Complimentary cleaning & maintenance</p>
+    </div>
+  </section>
+
+  <!-- Shop By Category Grid -->
+  <section id="categories" class="categories-section">
+    <div class="section-title">
+      <span class="section-tag">Explore By Style</span>
+      <h2>Shop By Category</h2>
+      <div class="title-divider"></div>
+    </div>
+
+    <div class="category-grid">
+      <a href="collections.html" class="cat-card cat-gold">
+        <div class="cat-overlay"></div>
+        <h3>Gold Jewelry</h3>
+      </a>
+      <a href="collections.html" class="cat-card cat-diamond">
+        <div class="cat-overlay"></div>
+        <h3>Diamond Solitaires</h3>
+      </a>
+      <a href="collections.html" class="cat-card cat-kundan">
+        <div class="cat-overlay"></div>
+        <h3>Polki & Kundan</h3>
+      </a>
+      <a href="collections.html" class="cat-card cat-bridal">
+        <div class="cat-overlay"></div>
+        <h3>Bridal Trousseau</h3>
+      </a>
+      <a href="collections.html" class="cat-card cat-daily">
+        <div class="cat-overlay"></div>
+        <h3>Everyday Luxury</h3>
+      </a>
+      <a href="collections.html" class="cat-card cat-silver">
+        <div class="cat-overlay"></div>
+        <h3>Sterling Silver</h3>
+      </a>
+    </div>
+  </section>
+
+  <!-- Swiper Carousel Section -->
+  <section id="swipe-collections" class="swipe-section">
+    <div class="section-title">
+      <span class="section-tag">Interactive Showcase</span>
+      <h2>Featured Masterpieces</h2>
+      <div class="title-divider"></div>
+      <p class="swipe-hint">👈 Swipe across to explore featured creations 👉</p>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="swiper collectionSwiper">
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide card">
+          <div class="card-img-placeholder gold-necklace">
+            <span class="badge">Bestseller</span>
+          </div>
+          <div class="card-info">
+            <span class="category-tag">22K Gold</span>
+            <h3>Royal Temple Choker</h3>
+            <p>Antique matte-finish gold choker featuring traditional temple motifs and ruby accents.</p>
+            <a href="collections.html" class="btn-sm">Inquire Collection</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide card">
+          <div class="card-img-placeholder diamond-ring">
+            <span class="badge">Signature</span>
+          </div>
+          <div class="card-info">
+            <span class="category-tag">Diamond</span>
+            <h3>Celestial Oval Solitaire</h3>
+            <p>EF-VVS oval brilliant-cut diamond mounted on a slim platinum band.</p>
+            <a href="collections.html" class="btn-sm">Inquire Collection</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide card">
+          <div class="card-img-placeholder bridal-choker">
+            <span class="badge">Heritage</span>
+          </div>
+          <div class="card-info">
+            <span class="category-tag">Polki & Kundan</span>
+            <h3>Imperial Kundan Bridal Set</h3>
+            <p>Uncut diamond Polki necklace strung with natural emerald beads.</p>
+            <a href="collections.html" class="btn-sm">Inquire Collection</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide card">
+          <div class="card-img-placeholder gold-bangles">
+            <span class="badge">Popular</span>
+          </div>
+          <div class="card-info">
+            <span class="category-tag">22K Gold</span>
+            <h3>Filigree Heritage Bangles</h3>
+            <p>Hand-carved pair of openable gold bangles with intricate lacework detailing.</p>
+            <a href="collections.html" class="btn-sm">Inquire Collection</a>
+          </div>
+        </div>
+
+        <div class="swiper-slide card">
+          <div class="card-img-placeholder diamond-earrings">
+            <span class="badge">New Arrival</span>
+          </div>
+          <div class="card-info">
+            <span class="category-tag">Diamond</span>
+            <h3>Flora Diamond Studs</h3>
+            <p>Classy cluster diamond stud earrings reflecting timeless brilliance.</p>
+            <a href="collections.html" class="btn-sm">Inquire Collection</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pagination & Navigation Controls -->
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- INTEGRATED REAL-TIME SEARCH SECTION -->
+  <section id="search-section" class="search-page-hero">
+    <div class="search-page-container">
+      <span class="section-tag">Explore The Vault</span>
+      <h2>Search Our Entire Collection</h2>
+      <div class="title-divider"></div>
+      <p style="color: var(--text-muted); margin-top: 1rem; font-weight: 300;">Search through 30+ handcrafted gold, diamond, silver, and gemstone designs in real-time.</p>
+
+      <!-- Quick Category Filter Chips -->
+      <div class="quick-tags">
+        <span>Quick Filters:</span>
+        <button class="tag-btn active" data-filter="all">All</button>
+        <button class="tag-btn" data-filter="gold">22K Gold</button>
+        <button class="tag-btn" data-filter="silver">Sterling Silver</button>
+        <button class="tag-btn" data-filter="diamond">Diamond</button>
+        <button class="tag-btn" data-filter="kundan">Polki & Kundan</button>
+        <button class="tag-btn" data-filter="gemstones">Gemstones</button>
+        <button class="tag-btn" data-filter="bridal">Bridal Set</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results Output Area -->
+  <section class="search-results-section">
+    <div class="results-container">
+      <div class="results-header">
+        <h3 id="resultsCount">Showing all collection designs</h3>
+      </div>
+
+      <!-- Dynamic Results Grid -->
+      <div id="dedicatedResultsGrid" class="dedicated-results-grid">
+        <!-- Results rendered dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Story / About Banner -->
+  <section id="about" class="about-banner">
+    <div class="about-content">
+      <h2>The Society Standard</h2>
+      <p>At Society Jewellers, jewelry is an enduring legacy. Every stroke, curve, and stone setting carries decades of royal craftsmanship and uncompromised quality.</p>
+      <a href="about.html#location" class="btn-secondary">Book a Private Lounge Appointment</a>
+    </div>
+  </section>
+
+  <!-- Customer Reviews / Testimonials -->
+  <section class="testimonials-section">
+    <div class="section-title">
+      <span class="section-tag">Client Love</span>
+      <h2>Words From Our Patrons</h2>
+      <div class="title-divider"></div>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Society Jewellers crafted my custom bridal choker, and it exceeded every expectation. Their attention to detail and purity guarantee is unmatched."</p>
+        <h5>— Ananya Sharma</h5>
+      </div>
+      <div class="testi-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"The solitaire engagement ring I purchased had exquisite clarity and diamond shine. Exceptional service and smooth guidance from their team."</p>
+        <h5>— Vikramaditya R.</h5>
+      </div>
+      <div class="testi-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>"Their gold bangles selection has the finest heritage artwork. Truly a trustworthy family jeweler for generations."</p>
+        <h5>— Priya Patel</h5>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>SOCIETY JEWELLERS</h3>
+        <p>Your trusted house of fine jewelry, pure gold, sterling silver, and ethically sourced diamonds.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collections.html">The Vault</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#search-section">Search</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#location">Location & Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>Email: contact@societyjewellers.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Store Hours: Mon - Sat: 10:30 AM - 8:30 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Society Jewellers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Swiper.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Core Functionality Script -->
+  <script>
+    // 1. Mobile Menu Drawer
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburgerBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // 2. Swiper Carousel Initialization
+    const swiper = new Swiper(".collectionSwiper", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      grabCursor: true,
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 25 },
+        1024: { slidesPerView: 3, spaceBetween: 30 },
+      },
+    });
+
+    // 3. Complete Collection Database (30+ Designs)
+    const fullCollectionDatabase = [
+      // 22K GOLD
+      { name: "Royal Temple Choker", category: "gold", tag: "22K Gold", desc: "Antique matte-finish gold choker featuring traditional temple motifs and ruby accents.", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" },
+      { name: "Filigree Heritage Bangles", category: "gold", tag: "22K Gold", desc: "Hand-carved pair of openable gold bangles with intricate lacework detailing.", img: "https://images.unsplash.com/photo-1611591475196-8575a069a3cf?q=80&w=800&auto=format&fit=crop" },
+      { name: "Meenakari Gold Jhumkas", category: "gold", tag: "22K Gold", desc: "Traditional bell earrings highlighted with vibrant floral hand-enameling.", img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop" },
+      { name: "Nakshi Coin Long Haram", category: "gold", tag: "22K Gold", desc: "Regal long gold chain crafted with sculpted coin emblems and pearl clusters.", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" },
+      { name: "Maharani Gold Kada", category: "gold", tag: "22K Gold", desc: "Broad statement gold wristband engraved with royal floral patterns.", img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" },
+      { name: "Layered Gold Rani Haar", category: "gold", tag: "22K Gold", desc: "Multi-strand classic gold necklace tailored for majestic wedding occasions.", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" },
+
+      // STERLING SILVER
+      { name: "Oxidized Silver Hasli", category: "silver", tag: "925 Silver", desc: "Artisanal rigid collar neckpiece in 925 silver with bohemian hand-chased motifs.", img: "https://images.unsplash.com/photo-1611591475196-8575a069a3cf?q=80&w=800&auto=format&fit=crop" },
+      { name: "Silver Lotus Payal Anklets", category: "silver", tag: "925 Silver", desc: "Pair of intricate sterling silver anklets with tinkling bell droplets.", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" },
+      { name: "Gothic Silver Statement Ring", category: "silver", tag: "925 Silver", desc: "Bold vintage silver cocktail ring set with a faceted onyx stone centerpiece.", img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" },
+      { name: "Tribal Silver Cuffs", category: "silver", tag: "925 Silver", desc: "Handcrafted 925 sterling silver wrist cuffs inspired by ancient desert culture.", img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop" },
+      { name: "Silver Filigree Drop Earrings", category: "silver", tag: "925 Silver", desc: "Lightweight delicate silver dangles showcasing intricate wire mesh work.", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" },
+
+      // DIAMOND SOLITAIRES
+      { name: "Celestial Oval Solitaire", category: "diamond", tag: "Diamond", desc: "EF-VVS oval brilliant-cut diamond mounted on a slim platinum band.", img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" },
+      { name: "Waterfall Diamond Choker", category: "diamond", tag: "Diamond", desc: "Cascade of round and marquise diamonds set in 18K white gold.", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" },
+      { name: "Flora Diamond Studs", category: "diamond", tag: "Diamond", desc: "Classy cluster diamond stud earrings reflecting timeless brilliance.", img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop" },
+      { name: "Eternity Diamond Bracelet", category: "diamond", tag: "Diamond", desc: "Continuous loop tennis bracelet encrusted with uniform brilliant diamonds.", img: "https://images.unsplash.com/photo-1611591475196-8575a069a3cf?q=80&w=800&auto=format&fit=crop" },
+      { name: "Emerald Cut Diamond Ring", category: "diamond", tag: "Diamond", desc: "Architectural emerald-cut center diamond flanked by baguette side stones.", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" },
+
+      // POLKI & KUNDAN
+      { name: "Imperial Kundan Bridal Set", category: "kundan", tag: "Polki & Kundan", desc: "Uncut diamond Polki necklace strung with natural emerald beads.", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" },
+      { name: "Meena Polki Chandbali", category: "kundan", tag: "Polki & Kundan", desc: "Crescent-shaped traditional earrings decorated with pearls and Kundan work.", img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop" },
+      { name: "Royal Matha Patti", category: "kundan", tag: "Polki & Kundan", desc: "Ornate bridal headpiece adorned with uncut diamonds and soft ruby drops.", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" },
+      { name: "Heritage Kundan Hathphool", category: "kundan", tag: "Polki & Kundan", desc: "Delicate bridal hand harness linking Kundan rings to wrist bangles.", img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" },
+      { name: "Jaipur Polki Pendant", category: "kundan", tag: "Polki & Kundan", desc: "Vibrant enamel-backed Kundan medallion attached to a pearl string.", img: "https://images.unsplash.com/photo-1611591475196-8575a069a3cf?q=80&w=800&auto=format&fit=crop" },
+
+      // GEMSTONES
+      { name: "Zambian Emerald Grace Set", category: "gemstones", tag: "Precious Gems", desc: "Deep green Zambian emerald necklace framed with brilliant diamond halo.", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" },
+      { name: "Burmese Ruby Choker", category: "gemstones", tag: "Precious Gems", desc: "Vivid pigeon-blood Burmese rubies woven into a luxurious white gold grid.", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" },
+      { name: "Sapphire Royal Cocktail Ring", category: "gemstones", tag: "Precious Gems", desc: "Ceylon blue sapphire halo ring styled for modern black-tie events.", img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" },
+      { name: "Navratna Heritage Necklace", category: "gemstones", tag: "Precious Gems", desc: "Auspicious arrangement of nine precious gems set in pure 22K gold.", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" },
+      { name: "Tanzanite Drop Earrings", category: "gemstones", tag: "Precious Gems", desc: "Rare violet-blue Tanzanites suspended from diamond studded dangles.", img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop" },
+
+      // BRIDAL TROUSSEAU
+      { name: "The Noor Royal Bridal Trousseau", category: "bridal", tag: "Bridal Set", desc: "Comprehensive grand bridal jewelry suite including choker, long haar, and accessories.", img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" },
+      { name: "Avadh Princess Wedding Set", category: "bridal", tag: "Bridal Set", desc: "Heavy gold and Kundan bridal masterpiece with pearl tassels and ruby accents.", img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=800&auto=format&fit=crop" },
+      { name: "Solitaire Diamond Bridal Layout", category: "bridal", tag: "Bridal Set", desc: "Ultra-modern platinum diamond suite for contemporary red-carpet brides.", img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" },
+      { name: "Heritage Temple Bridal Set", category: "bridal", tag: "Bridal Set", desc: "Hand-sculpted antique temple gold heirloom passed down through generations.", img: "https://images.unsplash.com/photo-1611591475196-8575a069a3cf?q=80&w=800&auto=format&fit=crop" },
+      { name: "Royal South Pearl & Gold Set", category: "bridal", tag: "Bridal Set", desc: "South sea natural pearls combined with heavy 22K carved gold elements.", img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" }
+    ];
+
+    const headerSearchInput = document.getElementById('headerSearchInput');
+    const resultsGrid = document.getElementById('dedicatedResultsGrid');
+    const resultsCount = document.getElementById('resultsCount');
+    const tagBtns = document.querySelectorAll('.tag-btn');
+    const searchSection = document.getElementById('search-section');
+
+    let activeFilter = 'all';
+
+    function renderItems(items) {
+      resultsCount.textContent = `Showing ${items.length} design${items.length === 1 ? '' : 's'}`;
+
+      if (items.length === 0) {
+        resultsGrid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem;">
+            <h4 style="font-family: var(--font-heading); color: var(--primary-gold); font-size: 1.3rem;">No designs found</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Try searching for terms like "Silver", "Gold", "Ring", "Choker", or "Diamond".</p>
+          </div>
+        `;
+        return;
+      }
+
+      resultsGrid.innerHTML = items.map(item => `
+        <div class="swiper-slide card" style="border-radius: 12px; overflow: hidden;">
+          <div class="card-img-placeholder" style="background-image: url('${item.img}');">
+            <span class="badge">${item.tag}</span>
+          </div>
+          <div class="card-info">
+            <span class="category-tag">${item.tag}</span>
+            <h3>${item.name}</h3>
+            <p>${item.desc}</p>
+            <a href="collections.html" class="btn-sm">Inquire Collection</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterJewelry() {
+      const query = headerSearchInput.value.toLowerCase().trim();
+
+      const filtered = fullCollectionDatabase.filter(item => {
+        const matchesQuery = item.name.toLowerCase().includes(query) || 
+                             item.category.toLowerCase().includes(query) ||
+                             item.tag.toLowerCase().includes(query) ||
+                             item.desc.toLowerCase().includes(query);
+
+        const matchesTag = activeFilter === 'all' || item.category.toLowerCase() === activeFilter.toLowerCase();
+
+        return matchesQuery && matchesTag;
+      });
+
+      renderItems(filtered);
+    }
+
+    // Header Search Bar Input Listener
+    headerSearchInput.addEventListener('input', () => {
+      filterJewelry();
+      if (headerSearchInput.value.trim().length > 0) {
+        searchSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Quick Filter Chips Listener
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tagBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        filterJewelry();
+      });
+    });
+
+    // Initial Load Rendering
+    renderItems(fullCollectionDatabase);
+  </script>
+</body>
+</html>
