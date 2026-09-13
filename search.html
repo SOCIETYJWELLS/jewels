@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Collection | Society Jewellers</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <p>✨ Exclusive Festival Collection | Complimentary Insured Worldwide Shipping ✨</p>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-text">SOCIETY JEWELLERS</a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="collections.html">Collections</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#about">About Us</a>
+        <a href="search.html" class="active">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dedicated Search Hero Banner -->
+  <section class="search-page-hero">
+    <div class="search-page-container">
+      <span class="section-tag">Explore The Vault</span>
+      <h1>Search Our Collections</h1>
+      <div class="title-divider"></div>
+      <p>Find your perfect gold, diamond, or gemstone heirloom.</p>
+
+      <!-- Search Input Box -->
+      <div class="search-box-wrapper">
+        <input type="text" id="dedicatedSearchInput" placeholder="Type to search (e.g., Ring, Necklace, Diamond, Gold...)" autofocus>
+        <span class="search-icon-symbol">🔍</span>
+      </div>
+
+      <!-- Quick Category Filter Chips -->
+      <div class="quick-tags">
+        <span>Quick Filters:</span>
+        <button class="tag-btn active" data-filter="all">All</button>
+        <button class="tag-btn" data-filter="22K Gold">Gold</button>
+        <button class="tag-btn" data-filter="Diamond">Diamond</button>
+        <button class="tag-btn" data-filter="Bridal Set">Bridal</button>
+        <button class="tag-btn" data-filter="Gemstones">Gemstones</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results Section -->
+  <section class="search-results-section">
+    <div class="results-container">
+      <div class="results-header">
+        <h3 id="resultsCount">Showing all items</h3>
+      </div>
+
+      <!-- Results Display Grid -->
+      <div id="dedicatedResultsGrid" class="dedicated-results-grid">
+        <!-- Results rendered dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>SOCIETY JEWELLERS</h3>
+        <p>Your trusted house of fine jewelry, pure gold, and ethically sourced diamonds.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="search.html">Search Collection</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>Email: contact@societyjewellers.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Store Hours: Mon - Sat: 10:30 AM - 8:30 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Society Jewellers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Search Page -->
+  <script>
+    // Mobile Navigation Toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburgerBtn.addEventListener('click', () => {
+      hamburgerBtn.classList.toggle('open');
+      navLinks.classList.toggle('active');
+    });
+
+    // Master Jewelry Data
+    const jewelryDatabase = [
+      { 
+        name: "Royal Temple Necklace", 
+        category: "22K Gold", 
+        price: "₹1,85,000", 
+        desc: "Antique finish traditional gold necklace with intricate artisan detailed carving.",
+        imgClass: "gold-necklace"
+      },
+      { 
+        name: "Celestial Solitaire Ring", 
+        category: "Diamond", 
+        price: "₹95,000", 
+        desc: "EF-VVS certified brilliant diamond set in pure 18K white gold.",
+        imgClass: "diamond-ring"
+      },
+      { 
+        name: "Royal Kundan Choker", 
+        category: "Bridal Set", 
+        price: "₹3,40,000", 
+        desc: "Intricate Kundan artwork decorated with handpicked emerald and pearl drops.",
+        imgClass: "bridal-choker"
+      },
+      { 
+        name: "Filigree Gold Bangles", 
+        category: "22K Gold", 
+        price: "₹1,20,000", 
+        desc: "Pair of 22K hallmarked fine gold handcrafted openable bangles.",
+        imgClass: "gold-bangles"
+      },
+      { 
+        name: "Flora Diamond Earrings", 
+        category: "Diamond", 
+        price: "₹68,000", 
+        desc: "Modern floral cluster layout studded with brilliant-cut diamonds.",
+        imgClass: "diamond-earrings"
+      },
+      { 
+        name: "Emerald Grace Pendant", 
+        category: "Gemstones", 
+        price: "₹1,15,000", 
+        desc: "Natural Zambian deep emerald bordered by sparkling diamonds.",
+        imgClass: "gemstone-pendant"
+      }
+    ];
+
+    const searchInput = document.getElementById('dedicatedSearchInput');
+    const resultsGrid = document.getElementById('dedicatedResultsGrid');
+    const resultsCount = document.getElementById('resultsCount');
+    const tagBtns = document.querySelectorAll('.tag-btn');
+
+    let activeFilter = 'all';
+
+    // Render Function
+    function renderItems(items) {
+      resultsCount.textContent = `Showing ${items.length} item${items.length === 1 ? '' : 's'}`;
+
+      if (items.length === 0) {
+        resultsGrid.innerHTML = `
+          <div class="no-results-box">
+            <h4>No jewelry found</h4>
+            <p>Try searching for terms like "Gold", "Diamond", "Ring", or "Necklace".</p>
+          </div>
+        `;
+        return;
+      }
+
+      resultsGrid.innerHTML = items.map(item => `
+        <div class="card">
+          <div class="card-img-placeholder ${item.imgClass}">
+            <span class="badge">${item.category}</span>
+          </div>
+          <div class="card-info">
+            <span class="category-tag">${item.category}</span>
+            <h3>${item.name}</h3>
+            <p>${item.desc}</p>
+            <div class="card-footer">
+              <span class="price">${item.price}</span>
+              <a href="collections.html" class="btn-sm">View Item</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter Logic
+    function filterJewelry() {
+      const query = searchInput.value.toLowerCase().trim();
+
+      const filtered = jewelryDatabase.filter(item => {
+        const matchesQuery = item.name.toLowerCase().includes(query) || 
+                             item.category.toLowerCase().includes(query) ||
+                             item.desc.toLowerCase().includes(query);
+
+        const matchesTag = activeFilter === 'all' || item.category.toLowerCase() === activeFilter.toLowerCase();
+
+        return matchesQuery && matchesTag;
+      });
+
+      renderItems(filtered);
+    }
+
+    // Input Search Event
+    searchInput.addEventListener('input', filterJewelry);
+
+    // Tag Filter Event
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tagBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        filterJewelry();
+      });
+    });
+
+    // Initial Load
+    renderItems(jewelryDatabase);
+  </script>
+
+</body>
+</html>
