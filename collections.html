@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- PREVENT ZOOMING IN VIEWPORT -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>The Vault - Fine Collections | Society Jewellers</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DISABLE COPY & DISABLE ZOOM RESTRICTIONS
+       ========================================================================== */
+    html, body {
+      touch-action: manipulation; /* Prevents double-tap zoom on mobile */
+      -webkit-touch-callout: none; /* Disables iOS long-press popups */
+      -webkit-user-select: none;   /* Safari */
+      -khtml-user-select: none;    /* Konqueror HTML */
+      -moz-user-select: none;      /* Firefox */
+      -ms-user-select: none;       /* IE/Edge */
+      user-select: none;           /* Disable text highlight globally */
+    }
+
+    /* Prevent dragging or copying images */
+    img {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    /* Allow normal typing interaction inside inputs if search forms exist */
+    input, select, textarea {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      user-select: text !important;
+    }
+
+    /* ==========================================================================
+       THEME & DESIGN SYSTEM (IDENTICAL TO PREVIOUS PAGE)
+       ========================================================================== */
+    :root {
+      --bg-main: #faf9f6;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f3f0e8;
+      
+      --primary-gold: #c5a059;
+      --accent-gold: #d4af37;
+      --dark-gold: #8e6d27;
+      
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --text-light: #8c8c8c;
+      
+      --border-color: rgba(197, 160, 89, 0.25);
+      --border-light: rgba(0, 0, 0, 0.08);
+      
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      
+      --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 40px rgba(197, 160, 89, 0.12);
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 30px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* Announcement Bar */
+    .announcement-bar {
+      background: linear-gradient(90deg, #1a1a1a, #2d2a26, #1a1a1a);
+      color: var(--primary-gold);
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1002;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-text {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-main);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand-text span {
+      color: var(--primary-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary-gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-gold);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      z-index: 1002;
+    }
+
+    .hamburger-btn span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--text-main);
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, #faf9f6 0%, #f4efe4 100%);
+      padding: 3.5rem 1rem 2.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .page-header-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.68rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--primary-gold);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+    }
+
+    .page-header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Filter Chips Bar */
+    .filter-section {
+      padding: 1.5rem 1rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      max-width: 100%;
+      scrollbar-width: none;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.55rem 1.4rem;
+      border-radius: var(--radius-lg);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary-gold);
+      color: #ffffff;
+      border-color: var(--primary-gold);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Collection Product Grid */
+    .collections-container {
+      max-width: 1300px;
+      margin: 1rem auto 5rem;
+      padding: 0 1.2rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .product-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-color);
+    }
+
+    .product-image-box {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* 1:1 Aspect Ratio */
+      background: #f0ebe1;
+      overflow: hidden;
+    }
+
+    .product-image-box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image-box img {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(26, 26, 26, 0.85);
+      color: var(--primary-gold);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(4px);
+    }
+
+    .product-details {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary-gold);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .product-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .product-price {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark-gold);
+    }
+
+    .btn-preview {
+      background: transparent;
+      border: 1px solid var(--primary-gold);
+      color: var(--dark-gold);
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-lg);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-preview:hover {
+      background: var(--primary-gold);
+      color: #ffffff;
+    }
+
+    /* Interactive Preview Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      max-width: 800px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1fr;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+
+    @media (min-width: 700px) {
+      .modal-card {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      z-index: 10;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+      background: #f0ebe1;
+    }
+
+    .modal-info {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modal-info h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .modal-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark-gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-inquire {
+      background: var(--primary-gold);
+      color: #ffffff;
+      text-decoration: none;
+      text-align: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius-lg);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: background 0.3s ease;
+    }
+
+    .btn-inquire:hover {
+      background: var(--dark-gold);
+    }
+
+    /* Footer */
+    .footer {
+      background: #111111;
+      color: #ffffff;
+      padding: 3rem 1rem 1.5rem;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col h3 {
+      font-family: var(--font-heading);
+      color: var(--primary-gold);
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      color: #fff;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p, .footer-col ul li a {
+      color: #a0a0a0;
+      font-size: 0.82rem;
+      line-height: 1.8;
+      text-decoration: none;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary-gold);
+    }
+
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      color: #777777;
+      font-size: 0.75rem;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 80%; max-width: 320px;
+        height: 100vh;
+        background: var(--bg-surface);
+        flex-direction: column;
+        justify-content: center;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+        z-index: 1001;
+        padding: 2rem;
+      }
+
+      .nav-links.active { right: 0; }
+      .hamburger-btn { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    ✨ Certified BIS Hallmarked Gold & Certified Solitaire Diamonds ✨
+  </div>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-text">SOCIETY <span>JEWELLERS</span></a>
+
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="collections.html" class="active">The Vault</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="about.html">About Us</a>
+        <a href="about.html#location">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="page-header-container">
+      <span class="section-tag">Handcrafted Masterpieces</span>
+      <h1>The Fine Jewelry Vault</h1>
+      <p>Explore our curated gallery of 22K gold heirlooms, certified solitaire diamonds, and antique bridal treasures.</p>
+    </div>
+  </section>
+
+  <!-- Category Filter Bar -->
+  <section class="filter-section">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCategory('all', this)">All Creations</button>
+      <button class="filter-btn" onclick="filterCategory('necklaces', this)">Necklaces</button>
+      <button class="filter-btn" onclick="filterCategory('rings', this)">Rings</button>
+      <button class="filter-btn" onclick="filterCategory('bangles', this)">Bangles & Cuffs</button>
+      <button class="filter-btn" onclick="filterCategory('earrings', this)">Earrings</button>
+    </div>
+  </section>
+
+  <!-- Collections Grid -->
+  <section class="collections-container">
+    <div class="product-grid" id="productGrid">
+      
+      <!-- Product 1 -->
+      <div class="product-card" data-category="necklaces">
+        <div class="product-image-box">
+          <span class="badge">Signature</span>
+          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop" alt="Royal Heritage Gold Choker">
+        </div>
+        <div class="product-details">
+          <span class="product-category">Necklaces</span>
+          <h3 class="product-title">Royal Heritage Choker</h3>
+          <p class="product-desc">22K yellow gold featuring intricate filigree design and Kundan gemstone accents.</p>
+          <div class="product-meta">
+            <span class="product-price">₹2,45,000</span>
+            <button class="btn-preview" onclick="openModal('Royal Heritage Choker', '22K yellow gold featuring intricate filigree design and Kundan gemstone accents. 100% BIS Hallmarked.', '₹2,45,000', 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=800&auto=format&fit=crop')">View</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card" data-category="rings">
+        <div class="product-image-box">
+          <span class="badge">Solitaire</span>
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" alt="Solitaire Diamond Band">
+        </div>
+        <div class="product-details">
+          <span class="product-category">Rings</span>
+          <h3 class="product-title">Crown Solitaire Ring</h3>
+          <p class="product-desc">VVS1 clarity natural diamond set in 18K white gold micro-pave frame.</p>
+          <div class="product-meta">
+            <span class="product-price">₹1,85,000</span>
+            <button class="btn-preview" onclick="openModal('Crown Solitaire Ring', 'VVS1 clarity natural diamond set in 18K white gold micro-pave frame. IGI Certified.', '₹1,85,000', 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop')">View</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card" data-category="bangles">
+        <div class="product-image-box">
+          <span class="badge">Bestseller</span>
+          <img src="https://images.unsplash.com/photo-1611591475140-629ee9427b0b?q=80&w=800&auto=format&fit=crop" alt="Temple Art Gold Bangles">
+        </div>
+        <div class="product-details">
+          <span class="product-category">Bangles & Cuffs</span>
+          <h3 class="product-title">Temple Art Gold Kadas</h3>
+          <p class="product-desc">Handcrafted antique finish 22K gold bangles with hand-carved floral motives.</p>
+          <div class="product-meta">
+            <span class="product-price">₹3,10,000</span>
+            <button class="btn-preview" onclick="openModal('Temple Art Gold Kadas', 'Handcrafted antique finish 22K gold bangles with hand-carved floral motives.', '₹3,10,000', 'https://images.unsplash.com/photo-1611591475140-629ee9427b0b?q=80&w=800&auto=format&fit=crop')">View</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card" data-category="earrings">
+        <div class="product-image-box">
+          <span class="badge">Limited</span>
+          <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop" alt="Emerald Drop Earrings">
+        </div>
+        <div class="product-details">
+          <span class="product-category">Earrings</span>
+          <h3 class="product-title">Emerald & Diamond Drops</h3>
+          <p class="product-desc">Natural Zambian emerald drops surrounded by brilliant brilliant-cut diamonds.</p>
+          <div class="product-meta">
+            <span class="product-price">₹1,40,000</span>
+            <button class="btn-preview" onclick="openModal('Emerald & Diamond Drops', 'Natural Zambian emerald drops surrounded by brilliant-cut diamonds in 18K yellow gold.', '₹1,40,000', 'https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=800&auto=format&fit=crop')">View</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Quick View Modal -->
+  <div class="modal-overlay" id="quickModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <img id="modalImg" class="modal-img" src="" alt="Jewelry Preview">
+      <div class="modal-info">
+        <h3 id="modalTitle">Item Title</h3>
+        <p id="modalDesc">Item description details...</p>
+        <div class="modal-price" id="modalPrice">₹0</div>
+        <a href="about.html#location" class="btn-inquire">Inquire at Store</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>SOCIETY JEWELLERS</h3>
+        <p>Your trusted destination for certified gold, high diamond jewelry, and sterling silver heirlooms.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collections.html">The Vault</a></li>
+          <li><a href="index.html#categories">Categories</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#location">Location & Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <p>Email: contact@societyjewellers.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Store Hours: 10:30 AM - 8:30 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Society Jewellers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript Logics & Protections -->
+  <script>
+    // ==========================================================================
+    // PREVENT COPY & CONTEXT MENU JS
+    // ==========================================================================
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('gesturestart', function(e) {
+      e.preventDefault();
+    });
+
+    // ==========================================================================
+    // MOBILE MENU TOGGLE
+    // ==========================================================================
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function toggleMenu() {
+      hamburgerBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      navOverlay.classList.toggle('active');
+    }
+
+    hamburgerBtn.addEventListener('click', toggleMenu);
+    navOverlay.addEventListener('click', toggleMenu);
+
+    // ==========================================================================
+    // CATEGORY FILTERING LOGIC
+    // ==========================================================================
+    function filterCategory(cat, btn) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ==========================================================================
+    // MODAL PREVIEW LOGIC
+    // ==========================================================================
+    const quickModal = document.getElementById('quickModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalImg = document.getElementById('modalImg');
+
+    function openModal(title, desc, price, img) {
+      modalTitle.innerText = title;
+      modalDesc.innerText = desc;
+      modalPrice.innerText = price;
+      modalImg.src = img;
+      quickModal.classList.add('active');
+    }
+
+    function closeModal() {
+      quickModal.classList.remove('active');
+    }
+
+    quickModal.addEventListener('click', function(e) {
+      if (e.target === quickModal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
